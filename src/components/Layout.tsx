@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Twitter, Facebook, Linkedin } from 'lucide-react';
 import { Button } from './Button';
 import { Link, useLocation } from 'react-router-dom';
+import { NavItem } from '../types';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,12 +17,12 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'Services', path: '/services' },
-    { label: 'Directory', path: '/directory' },
-    { label: 'Events', path: '/events' },
-    { label: 'About', path: '/about' },
+  const navLinks: NavItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
+    { label: 'Directory', href: '/directory' },
+    { label: 'Events', href: '/events' },
+    { label: 'About', href: '/about' },
   ];
 
   return (
@@ -36,8 +37,8 @@ export const Header: React.FC = () => {
           {navLinks.map((item) => (
             <Link 
               key={item.label} 
-              to={item.path} 
-              className={`text-xs font-semibold uppercase tracking-widest hover:text-gray-600 transition-colors ${location.pathname === item.path ? 'text-black border-b-2 border-black pb-1' : 'text-gray-800'}`}
+              to={item.href} 
+              className={`text-xs font-semibold uppercase tracking-widest hover:text-gray-600 transition-colors ${location.pathname === item.href ? 'text-black border-b-2 border-black pb-1' : 'text-gray-800'}`}
             >
               {item.label}
             </Link>
@@ -63,7 +64,7 @@ export const Header: React.FC = () => {
            {navLinks.map((item) => (
             <Link 
               key={item.label} 
-              to={item.path} 
+              to={item.href} 
               className="text-sm font-medium uppercase tracking-widest" 
               onClick={() => setIsMobileMenuOpen(false)}
             >

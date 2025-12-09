@@ -6,9 +6,9 @@ const DashboardLayout: React.FC = () => {
   const location = useLocation();
 
   const navItems = [
-    { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-    { label: 'Shoots', path: '/shoots', icon: Camera },
-    { label: 'Command Center', path: '/command-center', icon: Activity },
+    { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+    { label: 'Shoots', href: '/shoots', icon: Camera },
+    { label: 'Command Center', href: '/command-center', icon: Activity },
   ];
 
   return (
@@ -23,10 +23,10 @@ const DashboardLayout: React.FC = () => {
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => (
             <Link
-              key={item.path}
-              to={item.path}
+              key={item.href}
+              to={item.href}
               className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
-                location.pathname === item.path
+                location.pathname === item.href
                   ? 'bg-black text-white'
                   : 'text-gray-600 hover:bg-gray-50 hover:text-black'
               }`}
@@ -49,7 +49,7 @@ const DashboardLayout: React.FC = () => {
       <main className="flex-1 overflow-auto">
         <header className="bg-white border-b border-gray-200 h-16 flex items-center px-8 justify-between">
            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
-             {navItems.find(i => i.path === location.pathname)?.label || 'Dashboard'}
+             {navItems.find(i => i.href === location.pathname)?.label || 'Dashboard'}
            </span>
            <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
               <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="User" className="w-full h-full object-cover" />
